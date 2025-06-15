@@ -2,7 +2,6 @@ require('dotenv').config();
 const multer = require('multer')
 const firebaseStorage = require('multer-firebase-storage')
 const firebase = require('./firebase')
-const serviceAccount = require('../drive-28da5-firebase-adminsdk-fbsvc-972d77b40c.json')
 
 const storage = firebaseStorage({
     credentials: firebase.credential.cert({
