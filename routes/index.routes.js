@@ -18,14 +18,14 @@ router.get('/home', authorise, async (req, res) => {
 })
 
 router.post('/upload', authorise, upload.single('file'), async (req, res) => {
-    const file = await fileModel.create({
-        originalName: req.file?.originalname,
-        path: req.file.path,
-        size: req.file.fileRef.metadata.size,
-        userId: req.user.userId
-    })
-
-    console.log(file)
+    if(req.file){     
+        const file = await fileModel.create({
+            originalName: req.file.originalname,
+            path: req.file.path,
+            size: req.file.fileRef.metadata.size,
+            userId: req.user.userId
+        })
+    }
 
     res.redirect('/home')
 })
