@@ -4,6 +4,7 @@ const indexRouter = require('./routes/index.routes')
 const dotenv = require('dotenv') //To setup environment variables in .env file
 const cookieParser = require('cookie-parser') //To manage cookins(to pass token in cookies in our case)
 const connectToDB = require('./utils/db')
+const path = require('path')
 
 dotenv.config()
 connectToDB()
@@ -11,8 +12,10 @@ const app = express()
 
 app.use(cookieParser())
 app.use(express.json())
-app.use(express.urlencoded({extended: true}))+
+app.use(express.urlencoded({extended: true}))
 
+// Set views directory
+app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
 //configuring route
